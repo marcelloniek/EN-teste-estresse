@@ -54,18 +54,42 @@ export default function StressTest() {
       {!result ? (
         <>
           <h2 className="text-xl font-semibold mb-4">Stress Test</h2>
-          <p className="mb-4">{questions[currentIndex]}</p>
-          <div className="flex justify-between">
-            {[1, 2, 3, 4, 5].map((num) => (
-              <button
-                key={num}
-                className="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded hover:bg-blue-600 dark:hover:bg-blue-700"
-                onClick={() => recordResponse(num)}
-              >
-                {num}
-              </button>
-            ))}
+          <div className="mb-6 text-sm text-gray-700 dark:text-gray-300 text-center">
+            <p className="mb-4">
+              Indicate how often each situation is currently happening to you:<br />
+              <strong>(1) Never | (2) Rarely | (3) Sometimes | (4) Frequently | (5) Always</strong>
+            </p>
           </div>
+
+          <p className="mb-4">{questions[currentIndex]}</p>
+
+          <div className="flex justify-between items-end mb-4">
+            {[1, 2, 3, 4, 5].map((num) => {
+              const colorGradient = {
+                1: "from-gray-300 to-gray-400",
+                2: "from-blue-200 to-blue-300",
+                3: "from-blue-300 to-blue-400",
+                4: "from-blue-500 to-blue-600",
+                5: "from-blue-700 to-blue-800",
+              };
+
+              return (
+                <button
+                  key={num}
+                  onClick={() => recordResponse(num)}
+                  className={`flex items-center justify-center rounded-full text-white font-bold hover:scale-110 transition transform bg-gradient-to-br ${colorGradient[num]}`}
+                  style={{
+                    width: `${30 + num * 5}px`,
+                    height: `${30 + num * 5}px`,
+                    fontSize: `${12 + num}px`
+                  }}
+                >
+                  {num}
+                </button>
+              );
+            })}
+          </div>
+
           <p className="mt-4 text-sm">Question {currentIndex + 1} of {questions.length}</p>
         </>
       ) : (
