@@ -70,16 +70,35 @@ export default function StressTest() {
         </>
       ) : (
         <>
-          <h2 className="text-xl font-semibold mb-4">Result: {result}</h2>
-          {result === "GREEN" && <p>You handle this topic very well and are emotionally well-adjusted. You could greatly help others in need.</p>}
-          {result === "YELLOW" && <p>There are clear signs of emotional difficulties that need attention but can be overcome with determination and help.</p>}
-          {result === "RED" && <p>Your emotional issues with this topic require professional assistance. Please promptly seek help from a doctor or psychologist.</p>}
+          
+          <h2 className="text-xl font-semibold mb-4 text-center">Result: {result}</h2>
+          <img
+            src={
+              result === "GREEN"
+                ? "/images/semaforo-verde.png"
+                : result === "YELLOW"
+                ? "/images/semaforo-amarelo.png"
+                : "/images/semaforo-vermelho.png"
+            }
+            alt={`Traffic light: ${result}`}
+            className="w-40 h-auto mx-auto mb-4"
+          />
+          {result === "GREEN" && (
+            <p className="text-center">You handle this topic very well and are emotionally well-adjusted. You could greatly help others in need.</p>
+          )}
+          {result === "YELLOW" && (
+            <p className="text-center">There are clear signs of emotional difficulties that need attention but can be overcome with determination and help.</p>
+          )}
+          {result === "RED" && (
+            <p className="text-center">Your emotional issues with this topic require professional assistance. Please promptly seek help from a doctor or psychologist.</p>
+          )}
           <button
-            className="mt-4 px-4 py-2 bg-green-500 dark:bg-green-600 text-white rounded hover:bg-green-600 dark:hover:bg-green-700"
+            className="mt-6 px-4 py-2 bg-green-500 dark:bg-green-600 text-white rounded hover:bg-green-600 dark:hover:bg-green-700 block mx-auto"
             onClick={resetTest}
           >
             Retake Test
           </button>
+    
         </>
       )}
     </div>
